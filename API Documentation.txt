@@ -1,0 +1,74 @@
+Longevity In Time API Documentation
+1. 'accounts/register/'
+POST method - User profile creation, registration.
+Options:
+email - string - email for user registration
+password - string - user password
+password2 - string - repetition of the user's password
+first_name - string - username. If not specified, it will be left blank.
+last_name - string - user's last name. If not specified, it will be left blank.
+about_me - string - optional - user's "about me" section. If not specified, it will be left blank.
+User registration errors:
+{'password': 'Passwords must match.'} - The password and password2 fields do not match.
+{"email": ["custom user with this email address already exists." ],} - user with this email address already exists
+{ {field}:"[This field is required." ]} - required field not specified during registration
+Upon successful registration, the response contains the fields email, first_name, last_name, about_me.
+
+
+2. '/accounts/login',
+POST method - User authorization in the system
+Options:
+email - string - email for user registration
+password - string - user password
+otp - string - A one-time password is sent to the user by e-mail specified during registration. Valid for 300 seconds.
+User authorization errors:
+{'msg': 'Credentials missing'} - No email or password provided.
+{'msg': 'Invalid Credentials'} - The email and password values do not match.
+{'msg': 'OTP has been sent to your email'} - One Time Password is not filled in or does not match. A new one-time password has been generated and sent to the e-mail specified during registration.
+If the login is successful, the response contains {'msg': 'Login Success'} , login details, and status 200.
+
+3. '/accounts/logout'
+  POST method - User logout
+On successful logout, the response contains {'msg': 'Successfully Logged out'} and status 200.
+
+
+4. '/accounts/change-password'
+  POST method - Change user password
+Options:
+current_password - string - current password
+new_password - string - new password
+Errors when changing password:
+{'authorisation': 'User is not logged in'} - The user is not authorized in the system
+{'current_password': 'Does not match'} - The current password is incorrect.
+Upon successful password change, we get status 204.
+
+5. '/accounts/delete'
+POST method - Delete user profile
+Options:
+email - string - email for user registration
+password - string - user password
+Errors when deleting a user profile
+{'msg': 'Credentials missing'} - No email or password provided.
+{'msg': "User with such email or login not found"}- Do not match email and password.
+If the user is successfully deleted, we get {'msg': 'User profile successfully deleted'} and the status is 200.
+
+
+6. '/accounts/update'
+POST method - User profile update
+Options:
+email - string - email for user registration
+password - string - user password
+about_me - string - user's "about me" section
+Errors when updating user profile:
+{'msg': 'Credentials missing'} - No email or password provided.
+{'msg': 'No data to update'} - field "about_me" is not filled.
+{'msg': "User with such email or login not found"}- Do not match email and password.
+If the user profile is successfully updated, we get {'msg': 'User profile successfully updated'} and the status is 200.
+
+7. '/accounts/fetch'
+POST method - Getting user profile data
+Options:
+email - email address specified during registration
+Errors while getting user profile:
+{'email':'No user with such email'} - no user with such password is registered in the system.
+Upon successful completion, we get the fields email, first_name, last_name, about_me and status 200.
