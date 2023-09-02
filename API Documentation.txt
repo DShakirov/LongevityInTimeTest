@@ -5,8 +5,8 @@ Options:
 email - string - email for user registration
 password - string - user password
 password2 - string - repetition of the user's password
-first_name - string - username. If not specified, it will be left blank.
-last_name - string - user's last name. If not specified, it will be left blank.
+first_name - string - user name. 
+last_name - string - user's last name. 
 about_me - string - optional - user's "about me" section. If not specified, it will be left blank.
 User registration errors:
 {'password': 'Passwords must match.'} - The password and password2 fields do not match.
@@ -28,12 +28,12 @@ User authorization errors:
 If the login is successful, the response contains {'msg': 'Login Success'} , login details, and status 200.
 
 3. '/accounts/logout'
-  POST method - User logout
+POST method - User logout
 On successful logout, the response contains {'msg': 'Successfully Logged out'} and status 200.
 
 
 4. '/accounts/change-password'
-  POST method - Change user password
+POST method - Change user password
 Options:
 current_password - string - current password
 new_password - string - new password
