@@ -26,6 +26,7 @@ User authorization errors:
 {'msg': 'Invalid Credentials'} - The email and password values do not match.
 {'msg': 'OTP has been sent to your email'} - One Time Password is not filled in or does not match. A new one-time password has been generated and sent to the e-mail specified during registration.
 If the login is successful, the response contains {'msg': 'Login Success'} , login details, and status 200.
+Attention: check your 'spam' folder while recieving OTP emails.
 
 3. '/accounts/logout'
 POST method - User logout
